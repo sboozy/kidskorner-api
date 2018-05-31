@@ -6,9 +6,9 @@ function getAllProducts() {
   return db.any(`
     SELECT products.id, products.user_id, name, description, price, image_url
     FROM products
-    ORDER BY products.id DESC
   `)
 }
+    // ORDER BY products.id DESC
 
 function getAllProductsForUser(id) {
   return db.any(`

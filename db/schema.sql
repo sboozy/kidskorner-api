@@ -25,18 +25,18 @@ CREATE TABLE products
   image_url TEXT
 );
 
-CREATE TABLE chats
-(
-  id SERIAL PRIMARY KEY,
-  sender_id INT REFERENCES users (id),
-  recipient_id INT REFERENCES users (id),
-  product_id INT REFERENCES products (id)
-);
+-- CREATE TABLE chats
+-- (
+--   id SERIAL PRIMARY KEY,
+--   sender_id INT REFERENCES users (id),
+--   recipient_id INT REFERENCES users (id),
+--   product_id INT REFERENCES products (id)
+-- );
 
-CREATE TABLE messages
-(
-  id SERIAL PRIMARY KEY,
-  chat_id INT REFERENCES chats (id),
-  user_id INT REFERENCES users (id),
-  content TEXT
-);
+-- CREATE TABLE messages
+-- (
+--   id SERIAL PRIMARY KEY,
+--   chat_id INT REFERENCES chats (id),
+--   user_id INT REFERENCES users (id),
+--   content TEXT
+-- );

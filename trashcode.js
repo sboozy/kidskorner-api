@@ -1,3 +1,17 @@
+///////////////////////////////////////////////////////////////
+
+For postman
+{
+  "username": "dd",
+  "email": "dd",
+  "pw_hash": "dd"
+  "img_url": "dd"
+}
+
+///////////////////////////////////////////////////////////////
+
+chatModel
+
 // Connect so Models have access to database
 const db = require('../config/connection.js');
 
@@ -26,4 +40,18 @@ module.exports = {
   createChat,
   getAllChatsForUser
 }
+
+///////////////////////////////////////////////////////////////
+messageModel
+
+// Connect so Models have access to database
+const db = require('../config/connection.js');
+
+function createMessage() {
+  return db.one(`
+
+  `)
+}
+
+///////////////////////////////////////////////////////////////
 

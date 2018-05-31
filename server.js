@@ -2,6 +2,12 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+const authController = require('./controller/authController');
+
+const authRouter = require('./routes/authRouter');
+const userRouter = require('./routes/userRouter');
+const productRouter = require('./routes/productRouter');
+
 const app = express();
 const PORT = process.env.PORT || 3005;
 
@@ -11,6 +17,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(authController.receiveToken);
+app.use('/auth', authRouter);
+app.use('/users', userRouter);
+app.use('/products', productRouter);
 
 
 app.get('/', (req, res) => {

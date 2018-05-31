@@ -1,6 +1,27 @@
 const authDB = require('../model/authModel');
 const tokenService = require('../services/tokenService');
 
+
+function registerUser(req, res) {
+  console.log(req.body)
+  authDB.registerUser(req.body)
+  .catch(err => res.status(401).json({
+    message: err.message
+  }))
+  .then(data => tokenService.makeToken({
+    id: data.id,
+    username: data.username,
+    email: data.email,
+    pw_hash: data.pw_hash,
+    img_url: data.img_url
+  }))
+  .then(token => {
+    res.json({
+      token
+    })
+  })
+}
+
 function receiveToken(req, res, next) {
   if (req.headers.authorization) {
     req.authToken = req.headers.authorization.replace(/^Bearer\s/, '');
@@ -8,16 +29,17 @@ function receiveToken(req, res, next) {
   next();
 }
 
-function registerUser(req, res) {
-  authDB.registerUser(req.body)
+function loginUser(req, res, next) {
+  authDB.loginUser(req.body)
   .catch(err => res.status(401).json({
-    message: 'This email is already in use'
+    status: 'Error',
+    message: 'Invalid credentials'
   }))
   .then(data => tokenService.makeToken({
+    id: data.id,
     username: data.username,
     email: data.email,
-    img_url: data.img_url,
-    id: data.id
+    img_url: data.img_url
   }))
   .then(token => {
     res.json({
@@ -29,6 +51,7 @@ function registerUser(req, res) {
 function restrict (req, res, next) {
   tokenService.verify(req.authToken)
   .then(data => {
+    console.log("this is auth", data)
     res.locals.user = data;
     next()
   })
@@ -38,24 +61,6 @@ function restrict (req, res, next) {
   }))
 }
 
-function loginUser(req, res, next) {
-  authDB.loginUser(req.body)
-  .catch(err => res.status(401).json({
-    status: 'Error',
-    message: 'Invalid credentials'
-  }))
-  .then(data => tokenService.makeToken({
-    username: data.username,
-    email: data.email,
-    img_url: data.img_url,
-    id: data.id
-  }))
-  .then(token => {
-    res.json({
-      token
-    })
-  })
-}
 
 module.exports = {
   receiveToken,

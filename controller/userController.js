@@ -1,8 +1,9 @@
-const userDB = require('../models/userModel');
+const userDB = require('../model/userModel');
 
 function getAllUsers(req, res, next) {
   userDB.getAllUsers()
   .then(data => {
+    console.log("this is user controller", data)
     res.locals.users = data;
     next();
   })

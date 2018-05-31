@@ -9,6 +9,15 @@ function getAllProductsForUser(req, res, next) {
   .catch(next);
 }
 
+function getAllProducts(req, res, next) {
+  productDB.getAllProducts()
+  .then(data => {
+    res.locals.products = data;
+    next();
+  })
+  .catch(next)
+}
+
 function getOneProduct(req, res, next) {
   productDB.getOneProduct(req.params.id)
   .then(data => {
@@ -48,6 +57,7 @@ function deleteProduct(req, res, next) {
 
 module.exports = {
   getAllProductsForUser,
+  getAllProducts,
   getOneProduct,
   createProduct,
   updateProduct,
