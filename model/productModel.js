@@ -10,6 +10,16 @@ function getAllProducts() {
   `)
 }
 
+function getAllProductsForUser(id) {
+  return db.any(`
+    SELECT products.id, products.user_id, name, description, price, image_url
+    FROM products
+    JOIN users
+    ON users.id = products.user_id
+    WHERE users.id = $1
+  `, id)
+}
+
 //Get one product
 function getOneProduct(id) {
   return db.one(`
@@ -33,7 +43,7 @@ function createProduct(product) {
 }
 
 //Update a product
-function updateProduct(id) {
+function updateProduct(product) {
   if (product.image_url === '') {
     product.image_url = 'https://i.imgur.com/OYtFpHR.png'
   }
@@ -43,7 +53,7 @@ function updateProduct(id) {
       price = $/price/, image_url = $/image_url/
     WHERE id = $/id/
     RETURNING *
-  `, id)
+  `, product)
 }
 
 //Delete a product
@@ -56,6 +66,7 @@ function deleteProduct(id) {
 
 module.exports = {
   getAllProducts,
+  getAllProductsForUser,
   getOneProduct,
   createProduct,
   updateProduct,

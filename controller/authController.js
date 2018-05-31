@@ -1,4 +1,4 @@
-const authModel = require('../model/authModel');
+const authDB = require('../model/authModel');
 const tokenService = require('../services/tokenService');
 
 function receiveToken(req, res, next) {
@@ -9,11 +9,11 @@ function receiveToken(req, res, next) {
 }
 
 function registerUser(req, res) {
-  authModel.registerUser(req.body)
+  authDB.registerUser(req.body)
   .catch(err => res.status(401).json({
     message: 'This email is already in use'
   }))
-  .then(data=> tokenService.makeToken({
+  .then(data => tokenService.makeToken({
     username: data.username,
     email: data.email,
     img_url: data.img_url,
@@ -39,7 +39,7 @@ function restrict (req, res, next) {
 }
 
 function loginUser(req, res, next) {
-  authModel.loginUser(req.body)
+  authDB.loginUser(req.body)
   .catch(err => res.status(401).json({
     status: 'Error',
     message: 'Invalid credentials'
