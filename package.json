@@ -13,6 +13,8 @@
   "dependencies": {
     "bcrypt": "^2.0.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.2",
+    "jwt-js": "^0.5.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.5",
     "pg-promise": "^8.4.4"
