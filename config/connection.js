@@ -8,7 +8,7 @@ const dbConfig = require('./dbConfig');
 function setDatabase() {
   if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
     return pgp(dbConfig);
-  } else if (process.end.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === 'production') {
     return pgp(process.env.DATABASE_URL)
   }
 }
