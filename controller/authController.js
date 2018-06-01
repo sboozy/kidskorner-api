@@ -49,6 +49,7 @@ function loginUser(req, res, next) {
 }
 
 function restrict (req, res, next) {
+  console.log(req)
   tokenService.verify(req.authToken)
   .then(data => {
     console.log("this is auth", data)

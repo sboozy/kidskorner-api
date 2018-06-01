@@ -5,7 +5,7 @@ const authController = require('../controller/authController');
 
 productRouter.route('/')
   .get(
-    authController.restrict,
+    // authController.restrict,
     productController.getAllProducts,
     responseController.sendOkResponse,
     responseController.sendErrorResponse
