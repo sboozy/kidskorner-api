@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 //authorizes user and hashes password before inserting into db
 function registerUser(user) {
-  if (user.img_url === '') {
+  if (user.img_url === null) {
     user.img_url = "https://i.imgur.com/tPEkpFz.png"
   }
 
