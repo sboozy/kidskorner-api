@@ -5,7 +5,7 @@ const responseController = require('../controller/responseController');
 
 userRouter.route('/')
   .get(
-    authController.restrict,
+    // authController.restrict,
     userController.getAllUsers,
     responseController.sendOkResponse,
     responseController.sendErrorResponse
