@@ -31,9 +31,10 @@ function getOneProduct(id) {
 
 //Create a new product
 function createProduct(product) {
-  if (product.image_url === null) {
+  if (product.image_url === '') {
     product.image_url = 'https://i.imgur.com/OYtFpHR.png'
   }
+  product.price = parseInt(product.price)
   return db.one(`
     INSERT INTO products
     (user_id, name, description, price, image_url)
