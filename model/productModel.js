@@ -31,7 +31,7 @@ function getOneProduct(id) {
 
 //Create a new product
 function createProduct(product) {
-  if (product.image_url === '') {
+  if (product.image_url === null) {
     product.image_url = 'https://i.imgur.com/OYtFpHR.png'
   }
   return db.one(`

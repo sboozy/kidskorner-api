@@ -11,7 +11,7 @@ productRouter.route('/')
     responseController.sendErrorResponse
     )
   .post(
-    authController.restrict,
+    // authController.restrict,
     productController.createProduct,
     responseController.sendOkResponse,
     responseController.sendErrorResponse
