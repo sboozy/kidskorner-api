@@ -8,6 +8,13 @@ For postman
   "img_url": "dd"
 }
 
+{
+  "name": "Toddler Books",
+  "user_id": 1,
+  "description": "Some wear and tear",
+  "price": 10,
+  "image_url": "https://i.imgur.com/Jz9Aaxc.jpg"
+}
 ///////////////////////////////////////////////////////////////
 
 chatModel
@@ -55,3 +62,9 @@ function createMessage() {
 
 ///////////////////////////////////////////////////////////////
 
+          <TouchableHightlight style={styles.postButton}>
+            <Text style={styles.postText}
+                  onPress={this.addProduct}
+                  >Post Item
+            </Text>
+          </TouchableHightlight>

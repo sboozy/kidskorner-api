@@ -29,6 +29,7 @@ function getOneProduct(req, res, next) {
 
 function createProduct(req, res, next) {
   req.body.user_id = req.params.id
+  console.log(req.body)
   productDB.createProduct(req.body)
   .then(data => {
     res.locals.product = data;
